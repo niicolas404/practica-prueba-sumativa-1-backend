@@ -1,1 +1,26 @@
-CATEGORIA   
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}{{ juego.titulo }} | Django Shop{% endblock %}
+
+{% block contenido %}
+<article class="detalle">
+	<img class="detalle-imagen" src="{% static 'imagenes/producto.png' %}" alt="Imagen de {{ juego.titulo }}">
+	<div>
+		<p class="etiqueta">{{ juego.genero|lower }}</p>
+		<h1>{{ juego.titulo }}</h1>
+		<dl class="datos-juego">
+			<dt>Plataforma</dt><dd>{{ juego.plataforma }}</dd>
+			<dt>Género</dt><dd>{{ juego.genero }}</dd>
+			<dt>Año</dt><dd>{{ juego.anio }}</dd>
+			<dt>Desarrollador</dt><dd>{{ juego.desarrollador|default:'No informado' }}</dd>
+			<dt>Precio</dt><dd>${{ juego.precio|floatformat:2 }}</dd>
+		</dl>
+		<p>{{ juego.descripcion|truncatewords:30 }}</p>
+		{% if juego.precio > 50 %}
+		<p class="alerta alerta-info">Este juego pertenece a la selección premium.</p>
+		{% endif %}
+		<a class="boton boton-secundario" href="{% url 'shop:inicio' %}">Volver al catálogo</a>
+	</div>
+</article>
+{% endblock %}

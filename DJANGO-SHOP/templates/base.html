@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{% block titulo %}Django Shop{% endblock %}</title>
+	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+	<header class="encabezado">
+		<a class="marca" href="{% url 'shop:inicio' %}">
+			<img src="{% static 'imagenes/logo.png' %}" alt="Logo de Django Shop">
+			<span>Bienvenidos a Django Shop</span>
+		</a>
+		<nav>
+			<a href="{% url 'shop:inicio' %}">Inicio</a>
+			<a href="{% url 'shop:lista' %}">Catálogo</a>
+		</nav>
+	</header>
+
+	<main class="contenedor">
+		{% block contenido %}{% endblock %}
+	</main>
+
+	<footer class="alerta alerta-footer">Todos los derechos reservados, 2026</footer>
+</body>
+</html>
